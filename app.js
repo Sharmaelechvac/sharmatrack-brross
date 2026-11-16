@@ -47,6 +47,19 @@
     { en: "Range, dryer & water heater — final connections", es: "Estufa, secadora y calentador de agua — conexiones finales", pt: "Fogão, secadora e aquecedor de água — conexões finais" },
     { en: "Final walkthrough — plates on, covers clean", es: "Recorrido final — placas puestas, tapas limpias", pt: "Vistoria final — espelhos colocados, tampas limpas" }
   ];
+  /* Underground captions — 8-item checklist for the underground phase
+     (Fisher Loop first: 3/4-in PVC island run). EN strings distinct from
+     ROUGH and TRIM so the photo API stores them as-is. */
+  var UNDERGROUND = [
+    { en: "Trench open \u2014 conduit path", es: "Zanja abierta \u2014 recorrido del conduit", pt: "Vala aberta \u2014 caminho do condu\u00edte" },
+    { en: "\u00be-in PVC conduit run in trench", es: "Tendido de conduit PVC de \u00be-in en la zanja", pt: "Condu\u00edte de PVC de \u00be-in na vala" },
+    { en: "\u00be-in 90s & stub-ups", es: "Codos 90 de \u00be-in y stub-ups", pt: "Curvas 90 de \u00be-in e stub-ups" },
+    { en: "Kitchen island stub-up", es: "Stub-up de la isla de la cocina", pt: "Stub-up da ilha da cozinha" },
+    { en: "Stub-ups capped & marked", es: "Stub-ups tapados y marcados", pt: "Stub-ups tampados e marcados" },
+    { en: "Pull string in conduit", es: "Hilo gu\u00eda en el conduit", pt: "Fio guia no condu\u00edte" },
+    { en: "Conduit depth & bedding", es: "Profundidad del conduit y cama de arena", pt: "Profundidade do condu\u00edte e lastro" },
+    { en: "Ready for inspection \u2014 before backfill", es: "Listo para inspecci\u00f3n \u2014 antes del relleno", pt: "Pronto para inspe\u00e7\u00e3o \u2014 antes do reaterro" }
+  ];
   var SWITCH_DEF_IDX = 5; // "Switch box neatness throughout home" in ROUGH
 
   var UI = {
@@ -62,7 +75,7 @@
       ],
       prints: "PRINTS", printSet: "Electrical Set v13v", printMaster: "Master Plans", printInstr: "Printable instructions",
       roughIn: "Electrical Rough-in", trimIn: "Electrical Trim", done16: "of 16 done", done12: "of 12 done",
-      tabRough: "Electrical Rough-in", tabTrim: "Electrical Trim",
+      tabRough: "Electrical Rough-in", tabTrim: "Electrical Trim", tabUg: "Electrical Underground", ugIn: "Electrical Underground", done8: "of 8 done", captions8: "of 8 captions",
       needsPhoto: "Needs photo", camera: "Camera", gallery: "Gallery",
       otherPhotos: "OTHER PHOTOS — ELECTRICAL", otherSub: "Anything that doesn't fit a caption above.", videoRule: "Videos: 15 seconds max",
       yourName: "Your name", otherCamera: "Other camera", otherGallery: "Other gallery",
@@ -88,7 +101,7 @@
       ],
       prints: "PLANOS", printSet: "Juego eléctrico v13v", printMaster: "Planos maestros", printInstr: "Instrucciones imprimibles",
       roughIn: "Instalación eléctrica preliminar", trimIn: "Acabado eléctrico", done16: "de 16 listos", done12: "de 12 listos",
-      tabRough: "Preliminar eléctrico", tabTrim: "Acabado eléctrico",
+      tabRough: "Preliminar eléctrico", tabTrim: "Acabado eléctrico", tabUg: "Subterráneo eléctrico", ugIn: "Subterráneo eléctrico", done8: "de 8 listos", captions8: "de 8 títulos",
       needsPhoto: "Falta foto", camera: "Cámara", gallery: "Galería",
       otherPhotos: "OTRAS FOTOS — ELECTRICIDAD", otherSub: "Lo que no encaje en un título de arriba.", videoRule: "Videos: máximo 15 segundos",
       yourName: "Tu nombre", otherCamera: "Otra cámara", otherGallery: "Otra galería",
@@ -114,7 +127,7 @@
       ],
       prints: "PLANTAS", printSet: "Jogo elétrico v13v", printMaster: "Plantas mestras", printInstr: "Instruções imprimíveis",
       roughIn: "Instalação elétrica bruta", trimIn: "Acabamento elétrico", done16: "de 16 prontos", done12: "de 12 prontos",
-      tabRough: "Bruto elétrico", tabTrim: "Acabamento elétrico",
+      tabRough: "Bruto elétrico", tabTrim: "Acabamento elétrico", tabUg: "Subterrâneo elétrico", ugIn: "Subterrâneo elétrico", done8: "de 8 prontos", captions8: "de 8 legendas",
       needsPhoto: "Falta foto", camera: "Câmera", gallery: "Galeria",
       otherPhotos: "OUTRAS FOTOS — ELÉTRICA", otherSub: "Qualquer coisa que não caiba numa legenda acima.", videoRule: "Vídeos: no máximo 15 segundos",
       yourName: "Seu nome", otherCamera: "Outra câmera", otherGallery: "Outra galeria",
@@ -135,16 +148,16 @@
   var JOB = window.JOB_PAGE || {};
   var lang = localStorage.getItem("crew-lang") || "en";
   if (!UI[lang]) lang = "en";
-  var phase = localStorage.getItem("crew-phase-" + JOB.id) || "trim";
-  if (phase !== "trim") phase = "rough";
+  var phase = localStorage.getItem("crew-phase-" + JOB.id) || "underground";
+  if (["underground", "rough", "trim"].indexOf(phase) < 0) phase = "underground";
   var photos = []; // metadata records from GET /api/photos?job=<id>
   var seeds = [];  // migrated photos shipped with the site (seed-photos.json); display-only, never uploaded or deleted
   var jobMeta = {}; // record from GET /api/jobmeta?job=<id>
 
   function t() { return UI[lang]; }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
-  function listFor(p) { return p === "trim" ? TRIM : ROUGH; }
-  function prefixFor(p) { return p === "trim" ? "tcap-" : "cap-"; }
+  function listFor(p) { return p === "trim" ? TRIM : p === "underground" ? UNDERGROUND : ROUGH; }
+  function prefixFor(p) { return p === "trim" ? "tcap-" : p === "underground" ? "ucap-" : "cap-"; }
 
   /* ---------- Photo backend: Netlify Function + Blobs, same origin ---------- */
   var API = "/api/photos";
@@ -518,18 +531,19 @@
     var roughRows = merged.filter(isFreePhoto);
     var roughTilesEl = document.getElementById("rough-tiles");
     if (roughTilesEl) roughTilesEl.innerHTML = freeTilesHtml(roughRows);
-    var roughDone = roughRows.length;
+    var roughDone = renderList("rough", merged);
+    var ugDone = renderList("underground", merged);
     var trimDone = renderList("trim", merged);
     // Other photos — one shared section under both tabs
     var other = document.getElementById("other-tiles");
     if (other) other.innerHTML = tilesFor(null, null);
     // Section headings carry each phase's own count
-    var rd = document.getElementById("rough-done"); if (rd) rd.textContent = roughDone + " " + t().photosWord;
+    var rd = document.getElementById("rough-done"); if (rd) rd.textContent = roughDone + " " + t().done16;
+    var ugd = document.getElementById("ug-done"); if (ugd) ugd.textContent = ugDone + " " + t().done8;
     var td = document.getElementById("trim-done"); if (td) td.textContent = trimDone + " " + t().done12;
     // Ring + job bar reflect the ACTIVE phase
-    var done = phase === "trim" ? trimDone : roughDone;
+    var done = phase === "trim" ? trimDone : phase === "underground" ? ugDone : roughDone;
     var total = listFor(phase).length;
-    if (phase === "rough") total = roughDone || 1;
     var pct = total ? done / total : 0;
     var ring = document.getElementById("ring-fg");
     if (ring) {
@@ -538,15 +552,16 @@
       ring.style.strokeDashoffset = C * (1 - pct);
     }
     var label = done + "/" + total;
-    if (phase === "rough") label = String(roughDone);
     var num = document.getElementById("ring-num"); if (num) num.textContent = label;
     var jbn = document.getElementById("jobbar-num"); if (jbn) jbn.textContent = label;
     var sub = document.getElementById("ring-sub");
-    if (sub) sub.textContent = phase === "rough" ? done + " " + t().photosWord : done + " " + (phase === "trim" ? t().captions12 : t().captions16);
+    if (sub) sub.textContent = done + " " + (phase === "trim" ? t().captions12 : phase === "underground" ? t().captions8 : t().captions16);
   }
   function applyPhase() {
+    var ug = document.getElementById("phase-underground");
     var r = document.getElementById("phase-rough");
     var tr = document.getElementById("phase-trim");
+    if (ug) ug.hidden = phase !== "underground";
     if (r) r.hidden = phase !== "rough";
     if (tr) tr.hidden = phase !== "trim";
     document.querySelectorAll(".phasetabs button").forEach(function (b) {
@@ -571,6 +586,9 @@
     document.querySelectorAll("#phase-trim .capcard .cap").forEach(function (el, i) {
       if (TRIM[i]) el.textContent = TRIM[i][lang];
     });
+    document.querySelectorAll("#phase-underground .capcard .cap").forEach(function (el, i) {
+      if (UNDERGROUND[i]) el.textContent = UNDERGROUND[i][lang];
+    });
     var def = document.getElementById("switch-def");
     if (def && ROUGH[SWITCH_DEF_IDX].def) def.textContent = ROUGH[SWITCH_DEF_IDX].def[lang];
     var nameInp = document.getElementById("uploader-name");
@@ -590,7 +608,8 @@
   });
   document.querySelectorAll(".phasetabs button").forEach(function (b) {
     b.addEventListener("click", function () {
-      phase = b.getAttribute("data-phase") === "trim" ? "trim" : "rough";
+      var bp = b.getAttribute("data-phase");
+      phase = ["underground", "rough", "trim"].indexOf(bp) >= 0 ? bp : "underground";
       localStorage.setItem("crew-phase-" + JOB.id, phase);
       applyPhase();
     });

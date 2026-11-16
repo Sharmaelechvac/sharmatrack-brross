@@ -108,10 +108,71 @@
     </form>
   </div>
   <div class="phasetabs" role="tablist">
-    <button type="button" data-phase="rough" class="on" data-i18n="tabRough">Electrical Rough-in</button>
+    <button type="button" data-phase="underground" class="on" data-i18n="tabUg">Electrical Underground</button>
+    <button type="button" data-phase="rough" data-i18n="tabRough">Electrical Rough-in</button>
     <button type="button" data-phase="trim" data-i18n="tabTrim">Electrical Trim</button>
   </div>
-  <div class="section" id="phase-rough">
+  <div class="section" id="phase-underground">
+    <h2><span data-i18n="ugIn">Electrical Underground</span> — <span id="ug-done">0 of 8 done</span></h2>
+
+  <div class="capcard" id="ucap-0">
+    <div class="top"><span class="cap">Trench open — conduit path</span><span class="status">Needs photo</span></div>
+    <div class="btns">
+      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="0" data-phase="underground"></label>
+      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="0" data-phase="underground"></label>
+    </div>
+  </div>
+  <div class="capcard" id="ucap-1">
+    <div class="top"><span class="cap">¾-in PVC conduit run in trench</span><span class="status">Needs photo</span></div>
+    <div class="btns">
+      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="1" data-phase="underground"></label>
+      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="1" data-phase="underground"></label>
+    </div>
+  </div>
+  <div class="capcard" id="ucap-2">
+    <div class="top"><span class="cap">¾-in 90s &amp; stub-ups</span><span class="status">Needs photo</span></div>
+    <div class="btns">
+      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="2" data-phase="underground"></label>
+      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="2" data-phase="underground"></label>
+    </div>
+  </div>
+  <div class="capcard" id="ucap-3">
+    <div class="top"><span class="cap">Kitchen island stub-up</span><span class="status">Needs photo</span></div>
+    <div class="btns">
+      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="3" data-phase="underground"></label>
+      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="3" data-phase="underground"></label>
+    </div>
+  </div>
+  <div class="capcard" id="ucap-4">
+    <div class="top"><span class="cap">Stub-ups capped &amp; marked</span><span class="status">Needs photo</span></div>
+    <div class="btns">
+      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="4" data-phase="underground"></label>
+      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="4" data-phase="underground"></label>
+    </div>
+  </div>
+  <div class="capcard" id="ucap-5">
+    <div class="top"><span class="cap">Pull string in conduit</span><span class="status">Needs photo</span></div>
+    <div class="btns">
+      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="5" data-phase="underground"></label>
+      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="5" data-phase="underground"></label>
+    </div>
+  </div>
+  <div class="capcard" id="ucap-6">
+    <div class="top"><span class="cap">Conduit depth &amp; bedding</span><span class="status">Needs photo</span></div>
+    <div class="btns">
+      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="6" data-phase="underground"></label>
+      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="6" data-phase="underground"></label>
+    </div>
+  </div>
+  <div class="capcard" id="ucap-7">
+    <div class="top"><span class="cap">Ready for inspection — before backfill</span><span class="status">Needs photo</span></div>
+    <div class="btns">
+      <label class="cam"><span data-i18n="camera">Camera</span><input type="file" accept="image/*,video/*" capture="environment" data-caption="7" data-phase="underground"></label>
+      <label class="gal"><span data-i18n="gallery">Gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="7" data-phase="underground"></label>
+    </div>
+  </div>
+  </div>
+  <div class="section" id="phase-rough" hidden>
     <h2><span data-i18n="roughIn">Electrical Rough-in</span> — <span id="rough-done">0 of 16 done</span></h2>
 
   <div class="capcard" id="cap-0">
@@ -227,7 +288,7 @@
     </div>
   </div>
   </div>
-  <div class="section" id="phase-trim">
+  <div class="section" id="phase-trim" hidden>
     <h2><span data-i18n="trimIn">Electrical Trim</span> — <span id="trim-done">0 of 12 done</span></h2>
 
   <div class="capcard" id="tcap-0">
@@ -329,5 +390,5 @@
   <label class="ogal"><span data-i18n="otherGallery">Other gallery</span><input type="file" accept="image/*,video/*" multiple data-caption="other"></label>
 </div></div>
 <script>window.JOB_PAGE = { id: "fisher", address: "178 Fisher Loop, Ocklawaha, FL" };</script>
-<script src="../app.js?v=11"></script>
+<script src="../app.js?v=12"></script>
 </body></html>
