@@ -56,8 +56,8 @@
     { en: "\u00be-in 90s & stub-ups", es: "Codos 90 de \u00be-in y stub-ups", pt: "Curvas 90 de \u00be-in e stub-ups" },
     { en: "Kitchen island stub-up", es: "Stub-up de la isla de la cocina", pt: "Stub-up da ilha da cozinha" },
     { en: "Stub-ups capped & marked", es: "Stub-ups tapados y marcados", pt: "Stub-ups tampados e marcados" },
-    { en: "Pull string in conduit", es: "Hilo gu\u00eda en el conduit", pt: "Fio guia no condu\u00edte" },
-    { en: "Conduit depth & bedding", es: "Profundidad del conduit y cama de arena", pt: "Profundidade do condu\u00edte e lastro" },
+    { en: "Depth", es: "Profundidad", pt: "Profundidade" },
+    { en: "Bedding", es: "Cama de arena", pt: "Lastro" },
     { en: "Ready for inspection \u2014 before backfill", es: "Listo para inspecci\u00f3n \u2014 antes del relleno", pt: "Pronto para inspe\u00e7\u00e3o \u2014 antes do reaterro" }
   ];
   var SWITCH_DEF_IDX = 5; // "Switch box neatness throughout home" in ROUGH
