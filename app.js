@@ -55,7 +55,7 @@
     { en: "\u00be-in PVC conduit run in trench", es: "Tendido de conduit PVC de \u00be-in en la zanja", pt: "Condu\u00edte de PVC de \u00be-in na vala" },
     { en: "\u00be-in 90s & stub-ups", es: "Codos 90 de \u00be-in y stub-ups", pt: "Curvas 90 de \u00be-in e stub-ups" },
     { en: "Kitchen island stub-up", es: "Stub-up de la isla de la cocina", pt: "Stub-up da ilha da cozinha" },
-    { en: "Stub-ups capped & marked", es: "Stub-ups tapados y marcados", pt: "Stub-ups tampados e marcados" },
+    { en: "Stub-ups capped", es: "Stub-ups tapados", pt: "Stub-ups tampados" },
     { en: "Depth", es: "Profundidad", pt: "Profundidade" },
     { en: "Bedding", es: "Cama de arena", pt: "Lastro" },
     { en: "Ready for inspection \u2014 before backfill", es: "Listo para inspecci\u00f3n \u2014 antes del relleno", pt: "Pronto para inspe\u00e7\u00e3o \u2014 antes do reaterro" }
