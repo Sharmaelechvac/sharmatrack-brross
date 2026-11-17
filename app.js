@@ -47,15 +47,16 @@
     { en: "Range, dryer & water heater — final connections", es: "Estufa, secadora y calentador de agua — conexiones finales", pt: "Fogão, secadora e aquecedor de água — conexões finais" },
     { en: "Final walkthrough — plates on, covers clean", es: "Recorrido final — placas puestas, tapas limpias", pt: "Vistoria final — espelhos colocados, tampas limpas" }
   ];
-  /* Underground captions — 5-item checklist for the underground phase
+  /* Underground captions — 4-item checklist for the underground phase
      (Fisher Loop first: 3/4-in PVC island run). EN strings distinct from
-     ROUGH and TRIM so the photo API stores them as-is. */
+     ROUGH and TRIM so the photo API stores them as-is. The fifth caption
+     ("Ready for inspection — before backfill") was removed 2026-11-17 at
+     Sanjay's direction — it had no photo. */
   var UNDERGROUND = [
     { en: "Trench open \u2014 conduit path", es: "Zanja abierta \u2014 recorrido del conduit", pt: "Vala aberta \u2014 caminho do condu\u00edte" },
     { en: "\u00be-in PVC conduit run in trench", es: "Tendido de conduit PVC de \u00be-in en la zanja", pt: "Condu\u00edte de PVC de \u00be-in na vala" },
     { en: "\u00be-in 90s & stub-ups", es: "Codos 90 de \u00be-in y stub-ups", pt: "Curvas 90 de \u00be-in e stub-ups" },
-    { en: "Kitchen island stub-up", es: "Stub-up de la isla de la cocina", pt: "Stub-up da ilha da cozinha" },
-    { en: "Ready for inspection \u2014 before backfill", es: "Listo para inspecci\u00f3n \u2014 antes del relleno", pt: "Pronto para inspe\u00e7\u00e3o \u2014 antes do reaterro" }
+    { en: "Kitchen island stub-up", es: "Stub-up de la isla de la cocina", pt: "Stub-up da ilha da cozinha" }
   ];
   var SWITCH_DEF_IDX = 5; // "Switch box neatness throughout home" in ROUGH
 
@@ -72,7 +73,7 @@
       ],
       prints: "PRINTS", printSet: "Electrical Set v13v", printMaster: "Master Plans", printInstr: "Printable instructions",
       roughIn: "Electrical Rough-in", trimIn: "Electrical Trim", done16: "of 16 done", done12: "of 12 done",
-      tabRough: "Electrical Rough-in", tabTrim: "Electrical Trim", tabUg: "Electrical Underground", ugIn: "Electrical Underground", done5: "of 5 done", captions5: "of 5 captions",
+      tabRough: "Electrical Rough-in", tabTrim: "Electrical Trim", tabUg: "Electrical Underground", ugIn: "Electrical Underground", done5: "of 4 done", captions5: "of 4 captions",
       needsPhoto: "Needs photo", camera: "Camera", gallery: "Gallery",
       otherPhotos: "OTHER PHOTOS — ELECTRICAL", otherSub: "Anything that doesn't fit a caption above.", videoRule: "Videos: 15 seconds max",
       yourName: "Your name", otherCamera: "Other camera", otherGallery: "Other gallery",
@@ -98,7 +99,7 @@
       ],
       prints: "PLANOS", printSet: "Juego eléctrico v13v", printMaster: "Planos maestros", printInstr: "Instrucciones imprimibles",
       roughIn: "Instalación eléctrica preliminar", trimIn: "Acabado eléctrico", done16: "de 16 listos", done12: "de 12 listos",
-      tabRough: "Preliminar eléctrico", tabTrim: "Acabado eléctrico", tabUg: "Subterráneo eléctrico", ugIn: "Subterráneo eléctrico", done5: "de 5 listos", captions5: "de 5 títulos",
+      tabRough: "Preliminar eléctrico", tabTrim: "Acabado eléctrico", tabUg: "Subterráneo eléctrico", ugIn: "Subterráneo eléctrico", done5: "de 4 listos", captions5: "de 4 títulos",
       needsPhoto: "Falta foto", camera: "Cámara", gallery: "Galería",
       otherPhotos: "OTRAS FOTOS — ELECTRICIDAD", otherSub: "Lo que no encaje en un título de arriba.", videoRule: "Videos: máximo 15 segundos",
       yourName: "Tu nombre", otherCamera: "Otra cámara", otherGallery: "Otra galería",
@@ -124,7 +125,7 @@
       ],
       prints: "PLANTAS", printSet: "Jogo elétrico v13v", printMaster: "Plantas mestras", printInstr: "Instruções imprimíveis",
       roughIn: "Instalação elétrica bruta", trimIn: "Acabamento elétrico", done16: "de 16 prontos", done12: "de 12 prontos",
-      tabRough: "Bruto elétrico", tabTrim: "Acabamento elétrico", tabUg: "Subterrâneo elétrico", ugIn: "Subterrâneo elétrico", done5: "de 5 prontos", captions5: "de 5 legendas",
+      tabRough: "Bruto elétrico", tabTrim: "Acabamento elétrico", tabUg: "Subterrâneo elétrico", ugIn: "Subterrâneo elétrico", done5: "de 4 prontos", captions5: "de 4 legendas",
       needsPhoto: "Falta foto", camera: "Câmera", gallery: "Galeria",
       otherPhotos: "OUTRAS FOTOS — ELÉTRICA", otherSub: "Qualquer coisa que não caiba numa legenda acima.", videoRule: "Vídeos: no máximo 15 segundos",
       yourName: "Seu nome", otherCamera: "Outra câmera", otherGallery: "Outra galeria",
