@@ -1,0 +1,55 @@
+/* Sharma kit bridge for SHARMATRACK tracker pages (kit v1.2, Track theme).
+   Maps the trackers' existing markup onto kit tokens: system font, Track blue
+   #0058a3, 12-14px corners, kit status pills, 44px taps, press states, dark mode.
+   Loaded AFTER the app's own styles.css. Look only — no data or behaviour. */
+html.sk body.sk{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:17px; line-height:1.45;
+  -webkit-tap-highlight-color:transparent;
+}
+/* Cards and sections take the kit shape */
+html.sk .jobbtn, html.sk .card, html.sk .capcard, html.sk .section, html.sk .gear .card{
+  border-radius:14px; box-shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.05);
+}
+html.sk .jobbtn{ transition:transform .12s ease, background .12s ease; }
+html.sk .jobbtn:active, html.sk .card:active, html.sk .greenbtn:active,
+html.sk .mapsbtn:active, html.sk button:active{ transform:scale(.985); }
+/* Status = kit pills (5 words). Red stays reserved for late/Problem only. */
+html.sk .chip, html.sk .donebadge, html.sk .st-pill, html.sk .pill{
+  border-radius:999px; font-weight:600; letter-spacing:.01em;
+}
+html.sk .chip.st0{ background:#E9EDF3; color:#3C4658; }
+html.sk .chip.st1{ background:rgba(0,88,163,.14); color:#0058a3; }
+html.sk .chip.st2, html.sk .chip.done, html.sk .donebadge{ background:#E4F5E9; color:#1D7A3A; }
+/* Bars and tabs: solid white, hairline border, taps >= 44px */
+html.sk .jobbar{ background:#fff; border-bottom:1px solid #D9E2EC; }
+html.sk .langbar button{ min-height:44px; border-radius:999px; }
+html.sk .phasetabs button{ min-height:44px; border-radius:999px; }
+html.sk .phasetabs button.on{ background:#0058a3; color:#fff; }
+html.sk .searchbar input{ min-height:48px; border-radius:12px; font-size:17px; }
+html.sk .greenbtn{ border-radius:12px; min-height:48px; background:#0058a3; color:#fff; }
+html.sk .dvbar button, html.sk .dvtabs button{ min-height:44px; }
+/* Numbers line up */
+html.sk .prog, html.sk .jb-num, html.sk .num, html.sk .dvcount{ font-variant-numeric:tabular-nums; }
+/* Skeleton shimmer for photo tiles still loading */
+@keyframes skShimmer{ 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+html.sk .tile.loading, html.sk .capcard.loading{
+  background:linear-gradient(90deg,#EDF1F6 25%,#F7FAFC 40%,#EDF1F6 60%);
+  background-size:800px 100%; animation:skShimmer 1.4s infinite linear; min-height:96px;
+}
+@media (prefers-reduced-motion: reduce){ html.sk *{ animation:none!important; transition:none!important; } }
+/* Light always (Sanjay, 2026-11-19): apps open in light mode regardless of
+   the phone's setting. Dark comes only from the app's own Appearance switch
+   (kit v1.3) — never from prefers-color-scheme. No OS-dark rules here. */
+/* Dark (Appearance switch only): tracker cards/sections keep their white
+   surfaces, so inherited text on them is pinned to the ink colour — the
+   kit's light dark-mode body text would otherwise ghost on white cards.
+   Text sitting directly on the page background keeps the kit's colours. */
+html.sk[data-scheme="dark"] .jobbtn,
+html.sk[data-scheme="dark"] .card,
+html.sk[data-scheme="dark"] .capcard,
+html.sk[data-scheme="dark"] .section,
+html.sk[data-scheme="dark"] .progress,
+html.sk[data-scheme="dark"] .hero,
+html.sk[data-scheme="dark"] .coc-sec,
+html.sk[data-scheme="dark"] .coc-hero{ color:#17293c; }

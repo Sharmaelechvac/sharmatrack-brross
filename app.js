@@ -158,8 +158,11 @@
   function prefixFor(p) { return p === "trim" ? "tcap-" : p === "underground" ? "ucap-" : "cap-"; }
 
   /* ---------- Photo backend: Netlify Function + Blobs, same origin ---------- */
-  var API = "/api/photos";
-  var META_API = "/api/jobmeta";
+  /* Fleet photo API: this app is served from GitHub Pages, which has no
+     /api of its own — every SHARMATRACK edition talks to the one fleet API
+     origin on the crew app (same fix as the other editions). */
+  var API = "https://sharmatrack-crew.pages.dev/api/photos";
+  var META_API = "https://sharmatrack-crew.pages.dev/api/jobmeta";
   function fetchPhotos() {
     return fetch(API + "?job=" + encodeURIComponent(JOB.id))
       .then(function (r) { return r.ok ? r.json() : []; })

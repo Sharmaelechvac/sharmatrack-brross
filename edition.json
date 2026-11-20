@@ -1,0 +1,28 @@
+{
+  "app": "SHARMATRACK",
+  "edition": "brross",
+  "builder": "BR Ross Construction Group",
+  "builderLogo": null,
+  "builderLogoStatus": "LOGO NEEDED \u2014 no real BR Ross logo anywhere in the workspace; temporary monogram tile (BR) in use; house hero keeps the existing BR ROSS text wordmark",
+  "trades": [
+    "Electrical"
+  ],
+  "liveUrl": "https://sharmaelechvac.github.io/sharmatrack-brross/",
+  "repo": "Sharmaelechvac/sharmatrack-brross",
+  "shell": {
+    "macos": "canonical",
+    "skBridge": "canonical"
+  },
+  "shellSource": "~/workspace/sharmatrack-core (edit the shell there, run tools/sync.py \u2014 never fork shell files here)",
+  "houses": [
+    {
+      "dir": "fisher",
+      "jobId": "fisher",
+      "address": "178 Fisher Loop",
+      "city": "Ocklawaha, FL",
+      "trades": [
+        "Electrical"
+      ]
+    }
+  ]
+}
